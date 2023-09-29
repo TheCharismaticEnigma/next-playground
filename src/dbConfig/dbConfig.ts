@@ -1,6 +1,6 @@
 import mongoose from 'mongoose';
 
-export default async function connect() {
+async function connect() {
   try {
     mongoose.connect(process.env.MONGO_URI!);
     const connection = mongoose.connection;
@@ -19,6 +19,8 @@ export default async function connect() {
     console.error(`Something Went Wrong`);
   }
 }
+
+export default connect;
 
 // With each & every API CALL, DATABASE CONNECTION HAS TO BE ESTABLISHED.
 // IT's not a once-off situation.

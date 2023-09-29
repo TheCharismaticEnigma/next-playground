@@ -1,4 +1,4 @@
-const page = () => {
+const LoginPage = () => {
   return (
     <div className="m-5">
       <span className="text-5xl">Login Page</span>
@@ -6,4 +6,4 @@ const page = () => {
   );
 };
 
-export default page;
+export default LoginPage;
