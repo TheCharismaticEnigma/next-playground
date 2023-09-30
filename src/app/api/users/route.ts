@@ -56,6 +56,3 @@ export async function POST(request: NextRequest) {
     );
   }
 }
-
-// Valmikio ka nawa baaaapppppp .....
-// Azhar anjum anwar muhammad rizvi muhammad nassourdine ansari
