@@ -39,7 +39,7 @@ const SignUpPage = () => {
   return (
     <div className="gap-5 py-5  flex flex-col justify-evenly items-center  min-h-screen">
       <span className=" text-3xl p-1 px-3 ml-2 rounded text-black  bg-orange-500">
-        Sign Up
+        Sign up
       </span>
 
       <form
