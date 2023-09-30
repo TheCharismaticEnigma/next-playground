@@ -3,7 +3,7 @@
 import Link from 'next/link';
 import axios from 'axios';
 import { useRouter } from 'next/navigation';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { User, UserSchema } from '@/helpers/signupSchema';
 import { useForm } from 'react-hook-form';
@@ -12,17 +12,8 @@ const SignUpPage = () => {
   const router = useRouter();
 
   const [user, setUser] = useState<User>({} as User);
-  const [buttonDisabled, setButtonDisabled] = useState(false);
 
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-    getValues,
-    reset,
-  } = useForm({
-    resolver: zodResolver(UserSchema),
-  });
+  useEffect(() => {}, [user]);
 
   const onSignUp = async () => {
     const newUser: User = {
@@ -35,8 +26,18 @@ const SignUpPage = () => {
     reset();
   };
 
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+    getValues,
+    reset,
+  } = useForm({
+    resolver: zodResolver(UserSchema),
+  });
+
   return (
-    <div className="  gap-10 flex flex-col justify-evenly items-center  min-h-screen">
+    <div className="gap-5 py-5  flex flex-col justify-evenly items-center  min-h-screen">
       <span className=" text-3xl p-1 px-3 ml-2 rounded text-black  bg-orange-500">
         Sign Up
       </span>
@@ -97,6 +98,15 @@ const SignUpPage = () => {
           Submit
         </button>
       </form>
+
+      <div>
+        <span className="text-lg">Have an account? </span>{' '}
+        <Link href={'/login'}>
+          <span className="ml-1 text-orange-500 hover:text-orange-700 cursor-pointer text-xl underline ">
+            Login
+          </span>
+        </Link>
+      </div>
     </div>
   );
 };
