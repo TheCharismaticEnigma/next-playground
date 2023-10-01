@@ -4,15 +4,36 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { User, UserSchema } from '@/helpers/loginSchema';
 import Link from 'next/link';
 import { useForm } from 'react-hook-form';
+import toast from 'react-hot-toast/headless';
+import { useRouter } from 'next/navigation';
+import axios from 'axios';
 
 const LoginPage = () => {
+  const router = useRouter();
+
   const {
     handleSubmit,
     register,
     formState: { errors },
+    getValues,
   } = useForm({
     resolver: zodResolver(UserSchema),
   });
+
+  const onLogin = async () => {
+    try {
+      const user: User = {
+        email: getValues('email'),
+        password: getValues('password'),
+      };
+
+      const response = await axios.post('/api/users/login', user);
+      toast.success('LOGIN SUCCESSFUL');
+      router.push('/profile');
+    } catch (error: any) {
+      toast.error(error.message);
+    }
+  };
 
   return (
     <div className="gap-5 py-5  flex flex-col justify-evenly items-center  min-h-screen">
@@ -21,9 +42,7 @@ const LoginPage = () => {
       </span>
 
       <form
-        onSubmit={handleSubmit(() => {
-          console.log('submitted');
-        })}
+        onSubmit={handleSubmit(onLogin)}
         className="flex flex-col gap-8 shadow-sm shadow-orange-500 px-3 py-6 rounded-lg"
       >
         <div className="flex flex-col  gap-2 text-xl ">
