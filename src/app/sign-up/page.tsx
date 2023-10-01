@@ -7,23 +7,28 @@ import { useState, useEffect } from 'react';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { User, UserSchema } from '@/helpers/signupSchema';
 import { useForm } from 'react-hook-form';
+import toast from 'react-hot-toast';
 
 const SignUpPage = () => {
   const router = useRouter();
-
   const [user, setUser] = useState<User>({} as User);
 
-  useEffect(() => {}, [user]);
-
   const onSignUp = async () => {
-    const newUser: User = {
-      password: getValues('password').trimStart().trim(),
-      email: getValues('email').trimStart().trim(),
-      username: getValues('username').trimStart().trim(),
-    };
+    // Async function always has to be w/ try-catch block.
 
-    setUser(newUser);
-    reset();
+    try {
+      const newUser: User = {
+        password: getValues('password').trimStart().trim(),
+        email: getValues('email').trimStart().trim(),
+        username: getValues('username').trimStart().trim(),
+      };
+
+      setUser(newUser);
+      const postResponse = await axios.post('/api/users/sign-up', newUser); // No need of full routes.
+      router.push('/login');
+    } catch (error: any) {
+      toast.error(error.message);
+    }
   };
 
   const {
@@ -47,9 +52,11 @@ const SignUpPage = () => {
         className="flex flex-col gap-8 shadow-sm shadow-orange-500 px-3 py-6 rounded-lg"
       >
         <div className="flex flex-col  gap-2 text-xl ">
-          <span className="text-red-700 text-md mb-1 italic ">
-            {errors?.username?.message}
-          </span>
+          {typeof errors?.username?.message === 'string' && (
+            <span className="text-red-700 text-md mb-1 italic ">
+              {errors.username.message}
+            </span>
+          )}
 
           <label htmlFor="username ">Username</label>
           <input
@@ -64,9 +71,9 @@ const SignUpPage = () => {
         </div>
 
         <div className="flex flex-col  gap-2 text-xl ">
-          {errors?.email && (
+          {typeof errors?.email?.message === 'string' && (
             <span className="text-red-700 text-md mb-1 italic ">
-              {errors?.email?.message}
+              {errors.email.message}
             </span>
           )}
           <label htmlFor="email">Email</label>
@@ -80,9 +87,11 @@ const SignUpPage = () => {
         </div>
 
         <div className="flex flex-col  gap-2 text-xl ">
-          <span className="text-red-700 text-md mb-1 italic ">
-            {errors?.password?.message}
-          </span>
+          {typeof errors?.password?.message === 'string' && (
+            <span className="text-red-700 text-md mb-1 italic ">
+              {errors.password.message}
+            </span>
+          )}
 
           <label htmlFor="password">Password</label>
           <input

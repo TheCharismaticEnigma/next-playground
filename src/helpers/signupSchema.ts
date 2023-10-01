@@ -6,7 +6,7 @@ export const UserSchema = z.object({
     .string()
     .trim()
     .min(3, { message: 'Name must be longer.' })
-    .max(30),
+    .max(50),
   password: z.string().trim().min(3, { message: 'Password must be longer.' }),
 });
 
