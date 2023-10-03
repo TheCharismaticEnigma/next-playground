@@ -3,6 +3,7 @@ import bcrypt from 'bcryptjs';
 import connect from '@/dbConfig/dbConfig';
 import User from '@/models/userModel';
 import jwt from 'jsonwebtoken';
+import { Token } from '@/entities/Token';
 
 connect(); // FIRST SETUP A CONNETION w/ DATABASE.
 
@@ -12,6 +13,7 @@ export async function POST(request: NextRequest) {
   // If it does compare the password and hashed pw w/ bcrypt.
   // after password is verified, generate a token w/ jsonwebtoken and send user details.
   // Next response => set cookies.
+
   try {
     const requestBody = await request.json();
     const { email, password } = requestBody;
@@ -38,7 +40,7 @@ export async function POST(request: NextRequest) {
       );
 
     // Create a Web Token which is encrypted.
-    const tokenData = {
+    const tokenData: Token = {
       id: user._id,
       username: user.username,
       email: user.email,

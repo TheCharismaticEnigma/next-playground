@@ -27,7 +27,8 @@ const LoginPage = () => {
         password: getValues('password'),
       };
 
-      const response = await axios.post('/api/users/login', user);
+      await axios.post('/api/users/login', user);
+
       toast.success('LOGIN SUCCESSFUL');
       router.push('/profile');
     } catch (error: any) {
