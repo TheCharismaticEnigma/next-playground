@@ -2,6 +2,7 @@ import connect from '@/dbConfig/dbConfig';
 import User from '@/models/userModel.js';
 import { NextResponse, NextRequest } from 'next/server';
 import bcryptjs from 'bcryptjs';
+import { sendEmail } from '@/helpers/mailer';
 
 connect(); // Establish a connection w/ MongoDB Database.
 
@@ -33,6 +34,13 @@ export async function POST(request: NextRequest) {
     });
 
     const savedUser = await newUser.save();
+
+    //   Send Verification Email.
+    sendEmail({
+      email,
+      emailType: 'Verify',
+      userId: savedUser._id,
+    });
 
     return NextResponse.json(
       {

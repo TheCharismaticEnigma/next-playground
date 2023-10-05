@@ -4,7 +4,10 @@ import { NextRequest } from 'next/server';
 export function middleware(request: NextRequest) {
   const currentPath = request.nextUrl.pathname;
 
-  const isPublicPath = currentPath === '/login' || currentPath === '/sign-up';
+  const isPublicPath =
+    currentPath === '/login' ||
+    currentPath === '/sign-up' ||
+    currentPath === '/verifyemail';
   const token = request.cookies.get('token')?.value || '';
 
   // if user is already logged in (has token), then redirect the motherlover.
@@ -17,7 +20,14 @@ export function middleware(request: NextRequest) {
 }
 
 export const config = {
-  matcher: ['/', '/profile', '/profile/:id*', '/login', '/sign-up'],
+  matcher: [
+    '/',
+    '/profile',
+    '/profile/:id*',
+    '/login',
+    '/sign-up',
+    '/verifyemail',
+  ],
 };
 
 // Mathing Paths - list of paths on which you run the middleware.

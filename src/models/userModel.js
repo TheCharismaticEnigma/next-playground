@@ -2,32 +2,32 @@ import mongoose from 'mongoose';
 
 const UserSchema = new mongoose.Schema({
   username: {
-    type: 'string',
+    type: String,
     required: [true, 'Please enter a username'],
     unique: true,
   },
 
   email: {
-    type: 'string',
+    type: String,
     required: [true, 'Please enter an email'],
     unique: true,
   },
 
   password: {
-    type: 'string',
+    type: String,
     required: [true, 'Please enter a valid password'],
     unique: true,
   },
 
   isVerified: {
-    type: 'boolean',
+    type: Boolean,
     default: false,
   },
 
-  forgotPasswordToken: 'string',
-  forgotPasswordTokenExpiry: 'string',
-  verifyToken: 'string',
-  verifyTokenExpiry: 'string',
+  forgotPasswordToken: String,
+  forgotPasswordTokenExpiry: Date,
+  verifyToken: String,
+  verifyTokenExpiry: Date,
 });
 
 // In Next, DB connection doesn't persist permanently.
