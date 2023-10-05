@@ -1,6 +1,8 @@
 # This is a NEXT JS app that use MongoDB.
 
-The app is programmed using `NextJS and Typescript`, uses `MongoDB` database engine and `Vercel` was used as a deployment solution.
+The playground is programmed using `NextJS and Typescript`, uses `MongoDB` database engine.
+
+Contains the user login/logout w/ realtime database updation, Email Verification, and Password Reset Functionalities.
 
 ## Employed Technologies :
 
@@ -8,9 +10,13 @@ The app is programmed using `NextJS and Typescript`, uses `MongoDB` database eng
    EmployedTechnologies: {
     Framework: "NextJS",
     Database : "MongoDB",
+    Stylign: "TailwindCSS",
     Encryption : "bcryptJs",
+    HTTPService : "Axios",
+    Token: "jsonWebToken",
     PromiseBasedHTTPClient: "Axios HTTP",
     TypeChecking: "Typescript",
+    MailingSolution: "Node Mailer package & MailTrap Service",
     Deployment: "Vercel",
    },
 ```
