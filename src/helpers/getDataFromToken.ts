@@ -18,5 +18,3 @@ export default async function getDataFromToken(request: NextRequest) {
     throw new Error(error.message);
   }
 }
-
-//

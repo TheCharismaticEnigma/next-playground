@@ -1,4 +1,3 @@
-import getDataFromToken from '@/helpers/getDataFromToken';
 import { NextResponse } from 'next/server';
 
 export async function GET() {
@@ -19,3 +18,5 @@ export async function GET() {
     return NextResponse.json({ error: error.message }, { status: 500 });
   }
 }
+
+// Functionalities - Login, Logout, Verification Email and Reset Password Email

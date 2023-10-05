@@ -4,6 +4,8 @@ The playground is programmed using `NextJS and Typescript`, uses `MongoDB` datab
 
 Contains the user `Login/Logout w/ realtime Database Updation, Email Verification, and Password Reset Functionalities` .
 
+Add the environment variables w/ Vercel when deploying.
+
 ## Employed Technologies :
 
 ```js
