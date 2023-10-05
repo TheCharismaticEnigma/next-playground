@@ -2,7 +2,7 @@
 
 The playground is programmed using `NextJS and Typescript`, uses `MongoDB` database engine.
 
-Contains the user login/logout w/ realtime database updation, Email Verification, and Password Reset Functionalities.
+Contains the user `Login/Logout w/ realtime Database Updation, Email Verification, and Password Reset Functionalities` .
 
 ## Employed Technologies :
 
